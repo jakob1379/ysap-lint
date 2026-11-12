@@ -1,15 +1,33 @@
 import argparse
+import re
 import sys
 from pathlib import Path
 
 from .linter import lint
 
 
+_BASH_SHEBANG = re.compile(rb"#!.*\b(ba)?sh\b")
+
+
+def _is_bash(path):
+    if path.suffix:
+        return path.suffix in (".sh", ".bash")
+    try:
+        with path.open("rb") as f:
+            return bool(_BASH_SHEBANG.match(f.readline(256)))
+    except OSError:
+        return False
+
+
 def _iter_files(paths):
     for p in paths:
         path = Path(p)
         if path.is_dir():
-            yield from sorted([*path.rglob("*.sh"), *path.rglob("*.bash")])
+            yield from sorted(
+                f for f in path.rglob("*")
+                if not any(part.startswith(".")
+                           for part in f.relative_to(path).parts)
+                and f.is_file() and _is_bash(f))
         else:
             yield path
 

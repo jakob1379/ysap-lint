@@ -1,3 +1,5 @@
+import traceback
+
 from lsprotocol import types
 from pygls.lsp.server import LanguageServer
 
@@ -9,6 +11,13 @@ server = LanguageServer("ysap-lint", __version__)
 
 def _validate(ls: LanguageServer, uri: str) -> None:
     doc = ls.workspace.get_text_document(uri)
+    try:
+        found = lint(doc.source)
+    except Exception:
+        # stale diagnostics for text that is gone are worse than none
+        found = []
+        ls.window_log_message(types.LogMessageParams(
+            types.MessageType.Error, traceback.format_exc()))
     diagnostics = [
         types.Diagnostic(
             range=doc.range_to_client_units(types.Range(
@@ -20,7 +29,7 @@ def _validate(ls: LanguageServer, uri: str) -> None:
                       if d.code == "YS405"
                       else types.DiagnosticSeverity.Warning),
             source="ysap-lint")
-        for d in lint(doc.source)
+        for d in found
     ]
     ls.text_document_publish_diagnostics(types.PublishDiagnosticsParams(
         uri=uri, version=doc.version, diagnostics=diagnostics))

@@ -1,0 +1,312 @@
+[
+ {
+  "section": "Semicolons",
+  "kind": "wrong",
+  "expect": [
+   "YS103"
+  ],
+  "source": "name='dave';\necho \"hello $name\";\n"
+ },
+ {
+  "section": "Semicolons",
+  "kind": "right",
+  "expect": [],
+  "source": "name='dave'\necho \"hello $name\"\n"
+ },
+ {
+  "section": "Functions",
+  "kind": "wrong",
+  "expect": [
+   "YS104",
+   "YS107"
+  ],
+  "source": "function foo {\n\ti=foo # this is now global, wrong depending on intent\n}\n"
+ },
+ {
+  "section": "Functions",
+  "kind": "right",
+  "expect": [],
+  "source": "foo() {\n\tlocal i=foo # this is local, preferred\n}\n"
+ },
+ {
+  "section": "Block Statements",
+  "kind": "wrong",
+  "expect": [
+   "YS105"
+  ],
+  "source": "if true\nthen\n\t...\nfi\n"
+ },
+ {
+  "section": "Block Statements",
+  "kind": "wrong",
+  "expect": [],
+  "source": "true && {\n\t...\n}\n"
+ },
+ {
+  "section": "Block Statements",
+  "kind": "right",
+  "expect": [],
+  "source": "if true; then\n\t...\nfi\n"
+ },
+ {
+  "section": "Pipelines",
+  "kind": "right",
+  "expect": [],
+  "source": "foo | bar | baz | bat\n"
+ },
+ {
+  "section": "Pipelines",
+  "kind": "right",
+  "expect": [],
+  "source": "foo \\\n    | bar \\\n    | baz \\\n    | bat\n"
+ },
+ {
+  "section": "Pipelines",
+  "kind": "wrong",
+  "expect": [
+   "YS108"
+  ],
+  "source": "foo |\n  bar |\n  baz |\n  bat\n"
+ },
+ {
+  "section": "`test(1)`",
+  "kind": "wrong",
+  "expect": [
+   "YS201"
+  ],
+  "source": "test -d /etc\n"
+ },
+ {
+  "section": "`test(1)`",
+  "kind": "wrong",
+  "expect": [
+   "YS201"
+  ],
+  "source": "[ -d /etc ]\n"
+ },
+ {
+  "section": "`test(1)`",
+  "kind": "right",
+  "expect": [],
+  "source": "[[ -d /etc ]]\n"
+ },
+ {
+  "section": "Sequences",
+  "kind": "wrong",
+  "expect": [
+   "YS202"
+  ],
+  "source": "for f in $(seq 1 5); do\n\t...\ndone\n"
+ },
+ {
+  "section": "Sequences",
+  "kind": "wrong",
+  "expect": [
+   "YS202"
+  ],
+  "source": "for f in $(seq 1 \"$n\"); do\n\t...\ndone\n"
+ },
+ {
+  "section": "Sequences",
+  "kind": "right",
+  "expect": [],
+  "source": "for f in {1..5}; do\n\t...\ndone\n"
+ },
+ {
+  "section": "Sequences",
+  "kind": "right",
+  "expect": [],
+  "source": "for ((i = 0; i < n; i++)); do\n\t...\ndone\n"
+ },
+ {
+  "section": "Command Substitution",
+  "kind": "wrong",
+  "expect": [
+   "YS203"
+  ],
+  "source": "foo=`date`\n"
+ },
+ {
+  "section": "Command Substitution",
+  "kind": "right",
+  "expect": [],
+  "source": "foo=$(date)\n"
+ },
+ {
+  "section": "Math / Integer Manipulation",
+  "kind": "wrong",
+  "expect": [
+   "YS207"
+  ],
+  "source": "if [[ $a -gt $b ]]; then\n\t...\nfi\n"
+ },
+ {
+  "section": "Math / Integer Manipulation",
+  "kind": "right",
+  "expect": [],
+  "source": "if ((a > b)); then\n\t...\nfi\n"
+ },
+ {
+  "section": "Parameter Expansion",
+  "kind": "wrong",
+  "expect": [
+   "YS205"
+  ],
+  "source": "prog=$(basename \"$0\")\nnonumbers=$(echo \"$name\" | sed -e 's/[0-9]//g')\n"
+ },
+ {
+  "section": "Parameter Expansion",
+  "kind": "right",
+  "expect": [],
+  "source": "prog=${0##*/}\nnonumbers=${name//[0-9]/}\n"
+ },
+ {
+  "section": "Listing Files",
+  "kind": "wrong",
+  "expect": [
+   "YS206"
+  ],
+  "source": "for f in $(ls); do\n\t...\ndone\n"
+ },
+ {
+  "section": "Listing Files",
+  "kind": "right",
+  "expect": [],
+  "source": "for f in *; do\n\t...\ndone\n"
+ },
+ {
+  "section": "Arrays and lists",
+  "kind": "wrong",
+  "expect": [
+   "YS501"
+  ],
+  "source": "modules='json httpserver jshint'\nfor module in $modules; do\n\tnpm install -g \"$module\"\ndone\n"
+ },
+ {
+  "section": "Arrays and lists",
+  "kind": "right",
+  "expect": [],
+  "source": "modules=(json httpserver jshint)\nfor module in \"${modules[@]}\"; do\n\tnpm install -g \"$module\"\ndone\n"
+ },
+ {
+  "section": "Arrays and lists",
+  "kind": "right",
+  "expect": [],
+  "source": "npm install -g \"${modules[@]}\"\n"
+ },
+ {
+  "section": "read builtin",
+  "kind": "right",
+  "expect": [],
+  "source": "fqdn='computer1.daveeddy.com'\n\nIFS=. read -r hostname domain tld <<< \"$fqdn\"\necho \"$hostname is in $domain.$tld\"\n# => \"computer1 is in daveeddy.com\"\n"
+ },
+ {
+  "section": "Useless Use of Cat Award",
+  "kind": "wrong",
+  "expect": [
+   "YS301"
+  ],
+  "source": "cat file | grep foo\n"
+ },
+ {
+  "section": "Useless Use of Cat Award",
+  "kind": "right",
+  "expect": [],
+  "source": "grep foo < file\n"
+ },
+ {
+  "section": "Useless Use of Cat Award",
+  "kind": "right",
+  "expect": [],
+  "source": "grep foo file\n"
+ },
+ {
+  "section": "Quoting",
+  "kind": "right",
+  "expect": [],
+  "source": "foo='Hello World'\nbar=\"You are $USER\"\n"
+ },
+ {
+  "section": "Quoting",
+  "kind": "wrong",
+  "expect": [
+   "YS502"
+  ],
+  "source": "foo=\"hello world\"\n"
+ },
+ {
+  "section": "Quoting",
+  "kind": "right",
+  "expect": [],
+  "source": "foo='hello world'\n\nif [[ -n $foo ]]; then   # no quotes needed:\n\techo \"$foo\"          # quotes needed\nfi\n\nbar=$foo  # no quotes needed - variable assignment doesn't word-split\n"
+ },
+ {
+  "section": "Quoting",
+  "kind": "right",
+  "expect": [],
+  "source": "printf_date_supported=false\nif printf '%()T' &>/dev/null; then\n\tprintf_date_supported=true\nfi\n\nif $printf_date_supported; then\n\t...\nfi\n"
+ },
+ {
+  "section": "Variable Declaration",
+  "kind": "wrong",
+  "expect": [
+   "YS204",
+   "YS401"
+  ],
+  "source": "declare -i foo=5\nlet foo++\nreadonly bar='something'\nFOOBAR=baz\n"
+ },
+ {
+  "section": "Variable Declaration",
+  "kind": "right",
+  "expect": [],
+  "source": "i=5\n((i++))\nbar='something'\nexport FOOBAR=baz\n"
+ },
+ {
+  "section": "shebang",
+  "kind": "right",
+  "expect": [],
+  "source": "#!/usr/bin/env bash\n"
+ },
+ {
+  "section": "Error Checking",
+  "kind": "wrong",
+  "expect": [
+   "YS403"
+  ],
+  "source": "cd /some/path # this could fail\nrm file       # if cd fails, where am I? what am I deleting?\n"
+ },
+ {
+  "section": "Error Checking",
+  "kind": "right",
+  "expect": [],
+  "source": "cd /some/path || exit\nrm file\n"
+ },
+ {
+  "section": "Using {} instead of quotes.",
+  "kind": "wrong",
+  "expect": [
+   "YS501"
+  ],
+  "source": "for f in '1 space' '2  spaces' '3   spaces'; do\n\techo ${f}\ndone\n"
+ },
+ {
+  "section": "Using {} instead of quotes.",
+  "kind": "right",
+  "expect": [],
+  "source": "for f in '1 space' '2  spaces' '3   spaces'; do\n\techo \"$f\"\ndone\n"
+ },
+ {
+  "section": "Abusing for-loops when while would work better",
+  "kind": "wrong",
+  "expect": [
+   "YS501"
+  ],
+  "source": "users=$(awk -F: '{print $1}' /etc/passwd)\nfor user in $users; do\n\techo \"user is $user\"\ndone\n"
+ },
+ {
+  "section": "Abusing for-loops when while would work better",
+  "kind": "right",
+  "expect": [],
+  "source": "while IFS=: read -r user _; do\n\techo \"$user is user\"\ndone < /etc/passwd\n"
+ }
+]
