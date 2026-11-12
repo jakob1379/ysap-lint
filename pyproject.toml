@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ysap-lint"
+version = "0.1.0"
+description = "Bash linter and language server for the style.ysap.sh style guide"
+requires-python = ">=3.11"
+dependencies = [
+    "tree-sitter>=0.25",
+    "tree-sitter-bash>=0.23",
+    "pygls>=2",
+]
+
+[project.scripts]
+ysap-lint = "ysap_lint.cli:main"
+
+[tool.setuptools]
+packages = ["ysap_lint"]
