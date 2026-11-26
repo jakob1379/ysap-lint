@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="396" viewBox="0 0 960 396" role="img" aria-labelledby="t"><title id="t">ysap-lint flags six style-guide issues in a bash script, then the fixed script passes with exit 0</title><style>
+:root{--bg:#e8ecf2;--panel:#f9fafc;--rule:#d5dce6;--ink:#1c2433;--muted:#5a6476;
+--faint:#9aa3b2;--warn:#b26b00;--code:#4a46d8;--ok:#0b7a68;--beam:#4a46d8}
+@media (prefers-color-scheme:dark){:root{--bg:#0e131d;--panel:#151b27;--rule:#263043;
+--ink:#e2e7f0;--muted:#97a1b4;--faint:#556075;--warn:#f2b453;--code:#a9acff;--ok:#52d3b6;--beam:#a9acff}}
+text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:13.5px;fill:var(--muted)}
+.mono,.code,.ln{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+.bg{fill:var(--bg)}.panel{fill:var(--panel);stroke:var(--rule)}.rule{stroke:var(--rule);fill:none}
+.label{font-size:12.5px;fill:var(--faint)}
+.code{font-size:15px;fill:var(--ink)}.k{font-weight:700}.c{fill:var(--muted)}
+.ln{font-size:13px;fill:var(--warn)}.n6{fill:var(--faint)}
+.tab{stroke:var(--faint);fill:none;stroke-width:1.2;opacity:.7}
+.sq{fill:none;stroke:var(--warn);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0}
+.dg circle{fill:var(--warn)}.tag{font-size:13px;font-weight:700;fill:var(--code)}
+.beam{opacity:0;transform-box:view-box}.beam rect{fill:var(--beam);opacity:.07}.beam .edge{opacity:.9}
+.pass rect{fill:var(--ok)}
+.prompt{font-size:15px;fill:var(--faint)}.cmd{font-size:15px;fill:var(--ink)}
+.cover{fill:var(--panel);transform-box:fill-box;transform-origin:right;transform:scaleX(0)}
+.strong{fill:var(--ink);font-weight:600}
+.fail .pill{fill:none;stroke:var(--warn)}.fail .pilltext{fill:var(--warn);font-size:12.5px;font-weight:700}
+.ok{opacity:0}.ok .pill{fill:none;stroke:var(--ok)}.ok .pilltext{fill:var(--ok);font-size:12.5px;font-weight:700}
+.f0{opacity:0}
+.f1{opacity:0}
+.f2{opacity:0}
+.f3{opacity:0}
+.f4{opacity:0}
+.f5{opacity:0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+@keyframes scan{0%{opacity:0;transform:translateY(0)}12%{opacity:0;transform:translateY(0)}14%{opacity:1;transform:translateY(0)}19%{opacity:1;transform:translateY(30px)}24%{opacity:1;transform:translateY(60px)}29%{opacity:1;transform:translateY(90px)}34%{opacity:1;transform:translateY(120px)}39%{opacity:1;transform:translateY(150px)}42%{opacity:1;transform:translateY(180px)}44%{opacity:0;transform:translateY(180px)}100%{opacity:0;transform:translateY(180px)}}
+.scan{animation:scan 16s ease-in-out infinite both}
+@keyframes pass{0%{opacity:0;transform:translateY(0)}59.0%{opacity:0;transform:translateY(0)}61.0%{opacity:1;transform:translateY(0)}63.4%{opacity:1;transform:translateY(30px)}65.8%{opacity:1;transform:translateY(60px)}68.2%{opacity:1;transform:translateY(90px)}70.6%{opacity:1;transform:translateY(120px)}73.0%{opacity:1;transform:translateY(150px)}75.0%{opacity:1;transform:translateY(180px)}77.0%{opacity:0;transform:translateY(180px)}100%{opacity:0;transform:translateY(180px)}}
+.pass{animation:pass 16s ease-in-out infinite both}
+@keyframes n0{0%{fill:var(--faint)}14%{fill:var(--faint)}15%{fill:var(--warn)}61.0%{fill:var(--warn)}62.5%{fill:var(--faint)}100%{fill:var(--faint)}}
+.n0{animation:n0 16s ease-in-out infinite both}
+@keyframes n1{0%{fill:var(--faint)}19%{fill:var(--faint)}20%{fill:var(--warn)}63.4%{fill:var(--warn)}64.9%{fill:var(--faint)}100%{fill:var(--faint)}}
+.n1{animation:n1 16s ease-in-out infinite both}
+@keyframes n2{0%{fill:var(--faint)}24%{fill:var(--faint)}25%{fill:var(--warn)}65.8%{fill:var(--warn)}67.3%{fill:var(--faint)}100%{fill:var(--faint)}}
+.n2{animation:n2 16s ease-in-out infinite both}
+@keyframes n3{0%{fill:var(--faint)}29%{fill:var(--faint)}30%{fill:var(--warn)}68.2%{fill:var(--warn)}69.7%{fill:var(--faint)}100%{fill:var(--faint)}}
+.n3{animation:n3 16s ease-in-out infinite both}
+@keyframes n4{0%{fill:var(--faint)}34%{fill:var(--faint)}35%{fill:var(--warn)}70.6%{fill:var(--warn)}72.1%{fill:var(--faint)}100%{fill:var(--faint)}}
+.n4{animation:n4 16s ease-in-out infinite both}
+@keyframes n5{0%{fill:var(--faint)}39%{fill:var(--faint)}40%{fill:var(--warn)}73.0%{fill:var(--warn)}74.5%{fill:var(--faint)}100%{fill:var(--faint)}}
+.n5{animation:n5 16s ease-in-out infinite both}
+@keyframes b0{0%{opacity:1}61.0%{opacity:1}62.2%{opacity:0}95%{opacity:0}100%{opacity:1}}
+@keyframes f0{0%{opacity:0}61.0%{opacity:0;transform:translateY(5px)}62.8%{opacity:1;transform:translateY(0)}95%{opacity:1}100%{opacity:0}}
+.b0{animation:b0 16s ease-in-out infinite both}
+.f0{animation:f0 16s ease-in-out infinite both}
+@keyframes b1{0%{opacity:1}63.4%{opacity:1}64.6%{opacity:0}95%{opacity:0}100%{opacity:1}}
+@keyframes f1{0%{opacity:0}63.4%{opacity:0;transform:translateY(5px)}65.2%{opacity:1;transform:translateY(0)}95%{opacity:1}100%{opacity:0}}
+.b1{animation:b1 16s ease-in-out infinite both}
+.f1{animation:f1 16s ease-in-out infinite both}
+@keyframes b2{0%{opacity:1}65.8%{opacity:1}67.0%{opacity:0}95%{opacity:0}100%{opacity:1}}
+@keyframes f2{0%{opacity:0}65.8%{opacity:0;transform:translateY(5px)}67.6%{opacity:1;transform:translateY(0)}95%{opacity:1}100%{opacity:0}}
+.b2{animation:b2 16s ease-in-out infinite both}
+.f2{animation:f2 16s ease-in-out infinite both}
+@keyframes b3{0%{opacity:1}68.2%{opacity:1}69.4%{opacity:0}95%{opacity:0}100%{opacity:1}}
+@keyframes f3{0%{opacity:0}68.2%{opacity:0;transform:translateY(5px)}70.0%{opacity:1;transform:translateY(0)}95%{opacity:1}100%{opacity:0}}
+.b3{animation:b3 16s ease-in-out infinite both}
+.f3{animation:f3 16s ease-in-out infinite both}
+@keyframes b4{0%{opacity:1}70.6%{opacity:1}71.8%{opacity:0}95%{opacity:0}100%{opacity:1}}
+@keyframes f4{0%{opacity:0}70.6%{opacity:0;transform:translateY(5px)}72.4%{opacity:1;transform:translateY(0)}95%{opacity:1}100%{opacity:0}}
+.b4{animation:b4 16s ease-in-out infinite both}
+.f4{animation:f4 16s ease-in-out infinite both}
+@keyframes b5{0%{opacity:1}73.0%{opacity:1}74.2%{opacity:0}95%{opacity:0}100%{opacity:1}}
+@keyframes f5{0%{opacity:0}73.0%{opacity:0;transform:translateY(5px)}74.8%{opacity:1;transform:translateY(0)}95%{opacity:1}100%{opacity:0}}
+.b5{animation:b5 16s ease-in-out infinite both}
+.f5{animation:f5 16s ease-in-out infinite both}
+@keyframes s0{0%{stroke-dashoffset:1;opacity:1}14%{stroke-dashoffset:1;opacity:1}16.5%{stroke-dashoffset:0;opacity:1}60.5%{stroke-dashoffset:0;opacity:1}62.0%{stroke-dashoffset:0;opacity:0}100%{stroke-dashoffset:1;opacity:0}}
+@keyframes d0{0%{opacity:0;transform:translateX(-8px)}15%{opacity:0;transform:translateX(-8px)}17%{opacity:1;transform:translateX(0)}60.5%{opacity:1;transform:translateX(0)}62.0%{opacity:0;transform:translateX(0)}100%{opacity:0;transform:translateX(-8px)}}
+.s0{animation:s0 16s ease-in-out infinite both}
+.d0{animation:d0 16s cubic-bezier(.2,.7,.2,1) infinite both}
+@keyframes s1{0%{stroke-dashoffset:1;opacity:1}19%{stroke-dashoffset:1;opacity:1}21.5%{stroke-dashoffset:0;opacity:1}62.9%{stroke-dashoffset:0;opacity:1}64.4%{stroke-dashoffset:0;opacity:0}100%{stroke-dashoffset:1;opacity:0}}
+@keyframes d1{0%{opacity:0;transform:translateX(-8px)}20%{opacity:0;transform:translateX(-8px)}22%{opacity:1;transform:translateX(0)}62.9%{opacity:1;transform:translateX(0)}64.4%{opacity:0;transform:translateX(0)}100%{opacity:0;transform:translateX(-8px)}}
+.s1{animation:s1 16s ease-in-out infinite both}
+.d1{animation:d1 16s cubic-bezier(.2,.7,.2,1) infinite both}
+@keyframes s2{0%{stroke-dashoffset:1;opacity:1}24%{stroke-dashoffset:1;opacity:1}26.5%{stroke-dashoffset:0;opacity:1}65.3%{stroke-dashoffset:0;opacity:1}66.8%{stroke-dashoffset:0;opacity:0}100%{stroke-dashoffset:1;opacity:0}}
+@keyframes d2{0%{opacity:0;transform:translateX(-8px)}25%{opacity:0;transform:translateX(-8px)}27%{opacity:1;transform:translateX(0)}65.3%{opacity:1;transform:translateX(0)}66.8%{opacity:0;transform:translateX(0)}100%{opacity:0;transform:translateX(-8px)}}
+.s2{animation:s2 16s ease-in-out infinite both}
+.d2{animation:d2 16s cubic-bezier(.2,.7,.2,1) infinite both}
+@keyframes s3{0%{stroke-dashoffset:1;opacity:1}29%{stroke-dashoffset:1;opacity:1}31.5%{stroke-dashoffset:0;opacity:1}67.7%{stroke-dashoffset:0;opacity:1}69.2%{stroke-dashoffset:0;opacity:0}100%{stroke-dashoffset:1;opacity:0}}
+@keyframes d3{0%{opacity:0;transform:translateX(-8px)}30%{opacity:0;transform:translateX(-8px)}32%{opacity:1;transform:translateX(0)}67.7%{opacity:1;transform:translateX(0)}69.2%{opacity:0;transform:translateX(0)}100%{opacity:0;transform:translateX(-8px)}}
+.s3{animation:s3 16s ease-in-out infinite both}
+.d3{animation:d3 16s cubic-bezier(.2,.7,.2,1) infinite both}
+@keyframes s4{0%{stroke-dashoffset:1;opacity:1}34%{stroke-dashoffset:1;opacity:1}36.5%{stroke-dashoffset:0;opacity:1}70.1%{stroke-dashoffset:0;opacity:1}71.6%{stroke-dashoffset:0;opacity:0}100%{stroke-dashoffset:1;opacity:0}}
+@keyframes d4{0%{opacity:0;transform:translateX(-8px)}35%{opacity:0;transform:translateX(-8px)}37%{opacity:1;transform:translateX(0)}70.1%{opacity:1;transform:translateX(0)}71.6%{opacity:0;transform:translateX(0)}100%{opacity:0;transform:translateX(-8px)}}
+.s4{animation:s4 16s ease-in-out infinite both}
+.d4{animation:d4 16s cubic-bezier(.2,.7,.2,1) infinite both}
+@keyframes s5{0%{stroke-dashoffset:1;opacity:1}39%{stroke-dashoffset:1;opacity:1}41.5%{stroke-dashoffset:0;opacity:1}72.5%{stroke-dashoffset:0;opacity:1}74.0%{stroke-dashoffset:0;opacity:0}100%{stroke-dashoffset:1;opacity:0}}
+@keyframes d5{0%{opacity:0;transform:translateX(-8px)}40%{opacity:0;transform:translateX(-8px)}42%{opacity:1;transform:translateX(0)}72.5%{opacity:1;transform:translateX(0)}74.0%{opacity:0;transform:translateX(0)}100%{opacity:0;transform:translateX(-8px)}}
+.s5{animation:s5 16s ease-in-out infinite both}
+.d5{animation:d5 16s cubic-bezier(.2,.7,.2,1) infinite both}
+@keyframes type{0%{transform:scaleX(1)}4%{transform:scaleX(1)}11%{transform:scaleX(0)}74.5%{transform:scaleX(0)}74.7%{transform:scaleX(1)}75.2%{transform:scaleX(1)}78%{transform:scaleX(0)}100%{transform:scaleX(0)}}
+.cover{animation:type 16s steps(25,end) infinite both}
+@keyframes fail{0%{opacity:0}45%{opacity:0}47%{opacity:1}56%{opacity:1}58%{opacity:0}100%{opacity:0}}
+@keyframes ok{0%{opacity:0}79%{opacity:0}81%{opacity:1}94%{opacity:1}96%{opacity:0}100%{opacity:0}}
+.fail{animation:fail 16s ease-in-out infinite both}
+.ok{animation:ok 16s ease-in-out infinite both}</style><rect class="bg" width="960" height="396"/>
+<rect class="panel" x="24" y="20" width="912" height="356" rx="14"/>
+<path class="rule" d="M24 60H936M24 302H936"/>
+<text class="label mono" x="48" y="45">rotate.sh</text>
+<text class="label" x="912" y="45" text-anchor="end">editor, diagnostics from ysap-lint server</text>
+<g class="beam scan"><rect x="25" y="76" width="910" height="30"/><rect class="edge" x="25" y="76" width="3" height="30"/></g>
+<g class="beam pass"><rect x="25" y="76" width="910" height="30"/><rect class="edge" x="25" y="76" width="3" height="30"/></g>
+<text class="ln n0" x="68" y="96" text-anchor="end">1</text>
+<text class="ln n1" x="68" y="126" text-anchor="end">2</text>
+<text class="ln n2" x="68" y="156" text-anchor="end">3</text>
+<text class="ln n3" x="68" y="186" text-anchor="end">4</text>
+<text class="ln n4" x="68" y="216" text-anchor="end">5</text>
+<text class="ln n5" x="68" y="246" text-anchor="end">6</text>
+<text class="ln n6" x="68" y="276" text-anchor="end">7</text>
+<path class="tab" d="M100 211h24m-5 -4l5 4l-5 4"/>
+<path class="tab" d="M100 241h24m-5 -4l5 4l-5 4"/>
+<g class="b0"><text class="code " x="96" y="96" textLength="99" lengthAdjust="spacing"><tspan class="c">#!/bin/bash</tspan></text></g>
+<g class="f0"><text class="code " x="96" y="96" textLength="171" lengthAdjust="spacing"><tspan class="c">#!/usr/bin/env bash</tspan></text></g>
+<g class="b1"><text class="code " x="96" y="126" textLength="54" lengthAdjust="spacing"><tspan class="k">set</tspan> -e</text></g>
+<g class="f1"></g>
+<g class="b2"><text class="code " x="96" y="156" textLength="99" lengthAdjust="spacing"><tspan class="k">cd</tspan> /var/log</text></g>
+<g class="f2"><text class="code " x="96" y="156" textLength="171" lengthAdjust="spacing"><tspan class="k">cd</tspan> /var/log || <tspan class="k">exit</tspan></text></g>
+<g class="b3"><text class="code " x="96" y="186" textLength="207" lengthAdjust="spacing"><tspan class="k">if</tspan> [ -f app.log ]; <tspan class="k">then</tspan></text></g>
+<g class="f3"><text class="code " x="96" y="186" textLength="225" lengthAdjust="spacing"><tspan class="k">if</tspan> [[ -f app.log ]]; <tspan class="k">then</tspan></text></g>
+<g class="b4"><text class="code " x="132" y="216" textLength="171" lengthAdjust="spacing">n=`wc -l &lt; app.log`</text></g>
+<g class="f4"><text class="code " x="132" y="216" textLength="180" lengthAdjust="spacing">n=$(wc -l &lt; app.log)</text></g>
+<g class="b5"><text class="code " x="132" y="246" textLength="63" lengthAdjust="spacing"><tspan class="k">echo</tspan> $n</text></g>
+<g class="f5"><text class="code " x="132" y="246" textLength="81" lengthAdjust="spacing"><tspan class="k">echo</tspan> "$n"</text></g>
+<text class="code " x="96" y="276" textLength="18" lengthAdjust="spacing"><tspan class="k">fi</tspan></text>
+<path class="sq s0" pathLength="1" d="M96.0 102.0 q1.5 -2.6 3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0"/>
+<g class="dg d0"><circle cx="364" cy="92" r="3"/><text class="tag mono" x="376" y="96">YS402</text><text class="msg" x="432" y="96">shebang should be '#!/usr/bin/env bash'</text></g>
+<path class="sq s1" pathLength="1" d="M96.0 132.0 q1.5 -2.6 3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0"/>
+<g class="dg d1"><circle cx="364" cy="122" r="3"/><text class="tag mono" x="376" y="126">YS404</text><text class="msg" x="432" y="126">don't use set -e; check command results yourself</text></g>
+<path class="sq s2" pathLength="1" d="M96.0 162.0 q1.5 -2.6 3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0"/>
+<g class="dg d2"><circle cx="364" cy="152" r="3"/><text class="tag mono" x="376" y="156">YS403</text><text class="msg" x="432" y="156">check cd for failure: cd ... || exit</text></g>
+<path class="sq s3" pathLength="1" d="M123.0 192.0 q1.5 -2.6 3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0"/>
+<g class="dg d3"><circle cx="364" cy="182" r="3"/><text class="tag mono" x="376" y="186">YS201</text><text class="msg" x="432" y="186">use [[ ... ]] instead of [ ... ]</text></g>
+<path class="sq s4" pathLength="1" d="M150.0 222.0 q1.5 -2.6 3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0 t3 0"/>
+<g class="dg d4"><circle cx="364" cy="212" r="3"/><text class="tag mono" x="376" y="216">YS203</text><text class="msg" x="432" y="216">use $(...) instead of backticks</text></g>
+<path class="sq s5" pathLength="1" d="M177.0 252.0 q1.5 -2.6 3 0 t3 0 t3 0 t3 0 t3 0 t3 0"/>
+<g class="dg d5"><circle cx="364" cy="242" r="3"/><text class="tag mono" x="376" y="246">YS501</text><text class="msg" x="432" y="246">unquoted expansion $n is subject to word splitting; use "$n"</text></g>
+<text class="prompt mono" x="48" y="344">$</text>
+<text class="cmd mono" x="66" y="344" textLength="225" lengthAdjust="spacing">ysap-lint check rotate.sh</text>
+<rect class="cover" x="64" y="326" width="231" height="26"/>
+<g class="res fail"><text class="msg strong" x="826" y="344" text-anchor="end">Found 6 issues.</text><rect class="pill" x="840" y="327" width="72" height="24" rx="12"/><text class="pilltext mono" x="876" y="344" text-anchor="middle">exit 1</text></g>
+<g class="res ok"><text class="msg" x="826" y="344" text-anchor="end">no output</text><rect class="pill" x="840" y="327" width="72" height="24" rx="12"/><text class="pilltext mono" x="876" y="344" text-anchor="middle">exit 0</text></g></svg>
